@@ -1,6 +1,6 @@
-<h1>Add TODO list</h1>
+<h1>Edit list</h1>
 
-<%= form_for :project, url: projects_path do |f| %>
+<%= form_for :project, url: projects_path, method: :put do |f| %>
 <% if @project && @project.errors.any? %>
   <ul>
     <% @project.errors.full_messages.each do |msg| %>
