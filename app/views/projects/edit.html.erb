@@ -1,6 +1,6 @@
 <h1>Edit list</h1>
 
-<%= form_for :project, url: projects_path, method: :put do |f| %>
+<%= form_for :project, url: project_path(@project), method: :put do |f| %>
 <% if @project && @project.errors.any? %>
   <ul>
     <% @project.errors.full_messages.each do |msg| %>
@@ -13,5 +13,5 @@
   	<%= f.text_field :name %>
   </p>
   
-  <%= f.submit "Create" %>
+  <%= f.submit "Modify" %>
 <% end %>
