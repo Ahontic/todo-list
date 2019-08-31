@@ -1,11 +1,18 @@
 Rails.application.routes.draw do
   get 'home/index'
   devise_for :users
-  root to: "home#index"
+  root to: "projects#index"
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   resources :projects do
-    resources :tasks
-end
-
+    resources :tasks, only: [:edit, :create, :update, :destroy] do 
+  member do
+    put :move_up
+    put :move_down
+    put :status
+    put :deadline
+  end
+end  
+    end
+         
 end

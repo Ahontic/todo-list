@@ -1,35 +1,76 @@
-<h2> Current project name: </h2>
+<h1> Current project name: </h1>
+<h3><%=  @project.name %> </h3>
 
-<h1><%=  @project.name %> </h1>
+<div class="table-responsive">
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Position</th>
+      <th scope="col">Status</th>
+      <th scope="col">Deadline</th>
+     </tr>
+  </thead>
 
-
-<% @project.tasks.each do |task| %>
-  <h4> 
-    Task:&nbsp<%= task.name %>
-   </h4>
-   <p>
-    <%= link_to 'Edit', edit_project_task_path(task) %> |
-    <%= link_to 'Delete', project_task_path(task),
+<tbody>
+ <% @project.tasks.each do |task| %>
+   <tr>
+      <td> <%= task.name %>
+    <%= link_to 'Edit', edit_project_task_path(@project, task), class: "btn btn-primary btn-sm" %> |
+    <%= link_to 'Delete', project_task_path(@project, task), class: "btn btn-danger btn-sm",
      method: :delete,
-     data: { confirm: 'Are you sure?'} %>
+     data: { confirm: 'Are you sure?'} %></td>
 
-   </p>
-   <p>
-    <h5>
-    Status: <%= task.status %>
-   </h5>
-   </p>
-   <hr/>
+      <td> <%= task.position %> 
+      <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+      <%= link_to "UP", move_up_project_task_path(@project, task), class: "btn btn-secondary", method: :put %>
+  <%= link_to "DOWN", move_down_project_task_path(@project, task), class: "btn btn-secondary", method: :put %>
+  </div>
+
+      <td><%= task.status ? 'Done' : 'In progress' %>
+      <div class="custom-control custom-switch" >
+  <%= link_to 'Complete', status_project_task_path(@project, task), class: "custom-control-label", method: :put %>
+  </div></td>  
+
+  <td>   
+  <%= task.deadline %>
+  <div class="container">
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="form-group">
+                <div class="input-group date" id="datetimepicker1" data-target-input="nearest">
+                    <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker1"/>
+                    <div class="input-group-append" data-target="#datetimepicker1" data-toggle="datetimepicker">
+                        <div name="deadline" class="input-group-text"><i class="fa fa-calendar"></i>
+                        
+                          </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</div>
+</td>       
+
+</tr>
    <% end %>
+</tbody>
+</table>
+</div>
 
-<%= form_for([@project, @project.tasks.build]) do |f| %>
+<%= form_for ([@project, @project.tasks.build]) do |f| %>
+
   <p>
     <%= f.label :name %><br/>
     <%= f.text_field :name %>
-
-  <p>
-    <%= f.button "Add task" %>
-
   </p>
+  
+  <p>
+    <%= f.button "Add task", class: "btn btn-success"  %>
+  </p>
+   
   <% end %>
-  <%= link_to 'Back', projects_path %>
+
+
+  <%= link_to 'Back', projects_path, class: "btn btn-link" %>

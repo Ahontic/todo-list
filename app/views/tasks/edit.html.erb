@@ -1,17 +1,19 @@
 <h1>Edit task</h1>
 
 <%= form_for :task, url: project_task_path, method: :put do |f| %>
-<% if @project_tasks && @project_task.errors.any? %>
+<% if @task && @task.errors.any? %>
   <ul>
-    <% @project_tasks.errors.full_messages.each do |msg| %>
+    <% @task.errors.full_messages.each do |msg| %>
       <li><%= msg %></li>
     <% end %>
   </ul>
 <% end %>
 <p>
+
   <%= f.label :title %> <br/>
     <%= f.text_field :name %>
   </p>
   
   <%= f.submit "Modify" %>
 <% end %>
+  

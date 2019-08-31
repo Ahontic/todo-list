@@ -13,4 +13,16 @@
 //= require rails-ujs
 //= require activestorage
 //= require turbolinks
-//= require_tree .
+//= require jquery3
+//= require jquery-ui
+//= require jquery-ui/widget
+//= require popper
+//= require bootstrap-sprockets
+//= require_tree.
+//= require moment
+// If you require timezone data (see moment-timezone-rails for additional file options)
+//= require moment-timezone-with-data
+//= require tempusdominus-bootstrap-4.js
+$(function () {
+                $('#datetimepicker1').datetimepicker();
+            });

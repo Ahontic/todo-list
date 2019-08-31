@@ -1,6 +1,7 @@
+<div id="projects" class="list-group" data-url="<%= %>">
 <% @projects.each do |project| %>
 	<h2> 
-		<%= project.name %>
+		<%= link_to project.name, project %>
 	 </h2>
 	 
 	 <p>
@@ -13,3 +14,4 @@
 	 </p>
 
 <% end %>
+</div>

@@ -8,7 +8,7 @@ before_action :project_find, only: [:update, :destroy]
   end
 
   def show
-      project_find
+      @project = Project.find(params[:id])
   end
 
   def new
@@ -28,15 +28,17 @@ before_action :project_find, only: [:update, :destroy]
   end
 
   def update
-    @project.update(project_params)
-    redirect_to @project       
+    if @project.update(project_params)
+        redirect_to @project 
+        else
+        render action: 'edit'  
+        end    
   end
 
   def destroy
-      
-      @project.destroy
-
-      redirect_to projects_path
+      if @project.destroy
+        redirect_to projects_path
+      end
   end
 
 
