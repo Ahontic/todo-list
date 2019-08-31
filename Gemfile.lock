@@ -53,7 +53,7 @@ GEM
       execjs
     bcrypt (3.1.13)
     bindex (0.8.1)
-    bootsnap (1.4.2)
+    bootsnap (1.4.5)
       msgpack (~> 1.0)
     bootstrap (4.3.1)
       autoprefixer-rails (>= 9.1.0)
@@ -270,7 +270,7 @@ PLATFORMS
 
 DEPENDENCIES
   acts_as_list
-  bootsnap (>= 1.1.0, < 1.4.3)
+  bootsnap
   bootstrap (~> 4.3.1)
   bootstrap4-datetime-picker-rails
   byebug
