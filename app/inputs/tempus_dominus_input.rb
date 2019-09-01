@@ -30,13 +30,3 @@ class TempusDominusInput < SimpleForm::Inputs::Base
     "<i class='fa fa-calendar'></i>".html_safe
   end
 end
-
-<script>
-
-  $(function () {
-    $('#my_object_end_date').datetimepicker({
-      defaultDate: '<%= @my_object.end_date %>',
-      format: "YYYY-MM-DD HH:mm Z"
-    });
-  });
-</script>
