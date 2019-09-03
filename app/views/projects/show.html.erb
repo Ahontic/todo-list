@@ -16,6 +16,7 @@
  <% @project.tasks.each do |task| %>
    <tr>
       <td> <%= task.name %>
+  
     <%= link_to 'Edit', edit_project_task_path(@project, task), class: "btn btn-primary btn-sm" %> |
     <%= link_to 'Delete', project_task_path(@project, task), class: "btn btn-danger btn-sm",
      method: :delete,
@@ -33,25 +34,15 @@
   </div></td>  
 
   <td>   
-  <%= task.deadline %>
-  <div class="container">
-    <div class="row">
-        <div class="col-sm-6">
-            <div class="form-group">
-                <div class="input-group date" id="datetimepicker1" data-target-input="nearest">
-                    <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker1"/>
-                    <div class="input-group-append" data-target="#datetimepicker1" data-toggle="datetimepicker">
-                        <div name="deadline" class="input-group-text"><i class="fa fa-calendar"></i>
-                        
-                          </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-    </div>
-</div>
-</td>       
+    <%= task.deadline %>
+
+    <%= form_for ([@project, task]) do |f| %>
+                                        
+    <%= f.datetime_field :deadline  %>
+    <%= f.button "Add deadline", class: "btn btn-success"  %>
+    <% end %>
+    
+  </td>       
 
 </tr>
    <% end %>
