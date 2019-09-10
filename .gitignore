@@ -31,3 +31,10 @@
 /config/master.key
 
 README.md
+app/assets/javascripts/best_in_place.js
+app/assets/javascripts/best_in_place.purr.js
+app/assets/javascripts/projects.js.coffee
+app/assets/javascripts/jquery.purr.js
+app/assets/javascripts/jquery.autosize.js
+app/assets/javascripts/application.js
+app/assets/javascripts/application.js

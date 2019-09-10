@@ -14,6 +14,8 @@
 //= require activestorage
 //= require turbolinks
 //= require jquery3
+//= require jquery.purr
+//= require best_in_place.purr
 //= require jquery-ui
 //= require jquery-ui/widget
 //= require popper
@@ -23,6 +25,7 @@
 // If you require timezone data (see moment-timezone-rails for additional file options)
 //= require moment-timezone-with-data
 //= require tempusdominus-bootstrap-4.js
+//= require best_in_place
 $(function () {
                 $('#datetimepicker1').datetimepicker();
             });

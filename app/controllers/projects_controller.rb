@@ -17,9 +17,7 @@ before_action :project_find, only: [:update, :destroy]
   def create
       @project = current_user.projects.new(project_params)
       if @project.save
-        redirect_to @project
-      else
-        render action: 'new'
+        redirect_to projects_path
       end
   end
 

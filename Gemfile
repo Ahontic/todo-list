@@ -15,6 +15,7 @@ gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'bootstrap4-datetime-picker-rails'
 gem 'simple_form'
+gem 'best_in_place', github: 'bernat/best_in_place'
 
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
