@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 2019_08_31_134051) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "projects", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -22,7 +25,7 @@ ActiveRecord::Schema.define(version: 2019_08_31_134051) do
   create_table "tasks", force: :cascade do |t|
     t.string "name"
     t.boolean "status", default: false
-    t.integer "project_id"
+    t.bigint "project_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "position"
@@ -42,4 +45,5 @@ ActiveRecord::Schema.define(version: 2019_08_31_134051) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "tasks", "projects"
 end
