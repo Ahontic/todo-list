@@ -1,18 +1,19 @@
-Rails.application.routes.draw do
-  get 'home/index'
-  devise_for :users
-  root to: "projects#index"
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+# frozen_string_literal: true
 
-  resources :projects do
-    resources :tasks, only: [:edit, :create, :update, :destroy] do 
-  member do
-    put :move_up
-    put :move_down
-    put :status
-    put :deadline
-  end
-end  
+Rails.application.routes.draw do
+  namespace :api do
+    namespace :v1 do
+      post '/auth/sign_in', to: 'authentication#login'
+      post '/auth', to: 'users#create'
+
+      resources :projects do
+        resources :tasks, only: %i[index show create] do
+          member do
+            put :status
+            put :deadline
+          end
+        end
+      end
     end
-         
+  end
 end

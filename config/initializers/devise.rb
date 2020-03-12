@@ -8,7 +8,7 @@ Devise.setup do |config|
   # confirmation, reset password and unlock tokens in the database.
   # Devise will use the `secret_key_base` as its `secret_key`
   # by default. You can change it below and use your own secret key.
-  # config.secret_key = 'dcc25e832f3fd4faca086c42dac0b75504971ed4869f18ccca703b70f8e500d3e345631af8c4ce3b99c5e65b8d58e70e77e0b670c3637a1ece9dfbbc5c9cbb6c'
+  # config.secret_key = 'dcc25e832f3fd4faca086c42dac0b75504971ed4869f18ccca703b70f8e500d3e345631af8c'
 
   # ==> Controller configuration
   # Configure the parent class to the devise controllers.
@@ -114,7 +114,7 @@ Devise.setup do |config|
   config.stretches = Rails.env.test? ? 1 : 11
 
   # Set up a pepper to generate the hashed password.
-  # config.pepper = 'b524efdc8dd6e39a54cce2283a9fbdaa0f126f252d25b6b45e7a81503a42bb05d865f91c5fea2e326a269aa29c5d87ba816818d97ef7605f553033956b5dd9ad'
+  # config.pepper = 'b524efdc8dd6e39a54cce2283a9fbdaa0f126f252d25b6b45e7a81503a42bb05d865f91c5'
 
   # Send a notification to the original email when the user's email is changed.
   # config.send_email_changed_notification = false
@@ -251,7 +251,8 @@ Devise.setup do |config|
   # should add them to the navigational formats lists.
   #
   # The "*/*" below is required to match Internet Explorer requests.
-  # config.navigational_formats = ['*/*', :html]
+  config.navigational_formats = ['*/*', :html, :json]
+  # config.skip_session_storage = [:http_auth]
 
   # The default HTTP method used to sign out a resource. Default is :delete.
   config.sign_out_via = :delete
@@ -266,6 +267,9 @@ Devise.setup do |config|
   # change the failure app, you can configure them inside the config.warden block.
   #
   # config.warden do |manager|
+  #   # manager.strategies.add :jwt, Devise::Strategies::JWT
+  #   manager.default_strategies(scope: :user).unshift :jwt
+  # end
   #   manager.intercept_401 = false
   #   manager.default_strategies(scope: :user).unshift :some_external_strategy
   # end
@@ -296,4 +300,20 @@ Devise.setup do |config|
   # When set to false, does not sign a user in automatically after their password is
   # changed. Defaults to true, so a user is signed in automatically after changing a password.
   # config.sign_in_after_change_password = true
+  # config.jwt do |jwt|
+  #   jwt.secret = ENV['DEVISE_SECRET_KEY']
+  #   jwt.request_formats = {
+  #     user: [nil, :json]
+  #   }
+  #   jwt.dispatch_requests = [
+  #     ['POST', %r{^/api/v1/users/sign_in$}],
+  #     ['POST', %r{^/api/v1/users/sign_in.json$}],
+  #     ['POST', %r{^/authentication_tokens$}]
+  #   ]
+  #   jwt.revocation_requests = [
+  #     ['DELETE', %r{^/users/sign_out$}],
+  #     ['DELETE', %r{^/users/sign_out.json$}]
+  #   ]
+  #   jwt.expiration_time = 5.minutes.to_i
+  # end
 end

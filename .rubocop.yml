@@ -1,0 +1,28 @@
+Metrics/LineLength:
+  Max: 120
+Style/Documentation:
+  Enabled: false
+Metrics/BlockLength:
+  Exclude:
+    - config/**/*
+    - spec/**/*
+    - lib/tasks/*
+    - db/**/*
+    - app/admin/**/*
+Style/MixinUsage:
+  Exclude:
+    - bin/**/*
+Metrics/MethodLength:
+    Exclude:
+    - db/**/*
+    - bin/**/*
+Metrics/ModuleLength:
+  Exclude:
+    - spec/**/*
+Metrics:
+  Exclude:
+    - bin/**/*
+Style/ClassAndModuleChildren:
+  Exclude:
+    - app/controllers/api/v1/*
+    - app/helpers/**/*
